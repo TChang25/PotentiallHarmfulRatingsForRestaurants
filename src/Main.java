@@ -29,31 +29,11 @@ public class Main {
                 case 2:
                     System.out.println("Please ensure your review data looks like Title-Comment-Rating-CustomerName-RestaurantID");
                     String fileName = main.getStringValueFromInput("Please enter a filename: ");
-                    try {
-                        Scanner scFile = new Scanner(new File(fileName));
-                        while (scFile.hasNextLine()) {
-                            String line = scFile.nextLine();
-                            String[] reviewParts = line.split("-");
-                            try{
-                                if (db.CreateReview(reviewParts[0], reviewParts[1], Integer.parseInt(reviewParts[2]), reviewParts[3], Integer.parseInt(reviewParts[4]))){
-                                   System.out.println("Review Created Successfully: " + line);
-                                }
-                                else{
-                                    System.out.println("Review Not Created Unsuccessfully: " + line);
-                                }
-
-                            }
-                            catch(Exception e){
-                                System.out.println("Parsing error while creating review: " + line);
-                                System.out.println("Continuing to parse the file.");
-                                continue;
-                            }
-
-                        }
+                    if (main.processInputFile(fileName, db)){
                         System.out.println("Completed processing file: " + fileName);
-                    } catch (Exception e) {
+                    }
+                    else{
                         System.out.println("File not found. Try again.");
-                        continue;
                     }
                     break;
                 case 3:
@@ -156,14 +136,38 @@ public class Main {
         else if (avg > 2){
             return "D";
         }
-        else if (avg > 1){
+        else if (avg >= 1){
             return "F";
         }
         else {
             return "";
         }
     }
+    public boolean processInputFile(String fileName, Database db){
+        try {
+            Scanner scFile = new Scanner(new File(fileName));
+            while (scFile.hasNextLine()) {
+                String line = scFile.nextLine();
+                String[] reviewParts = line.split("-");
+                try {
+                    if (db.CreateReview(reviewParts[0], reviewParts[1], Integer.parseInt(reviewParts[2]), reviewParts[3], Integer.parseInt(reviewParts[4]))) {
+                        System.out.println("Review Created Successfully: " + line);
+                    } else {
+                        System.out.println("Review Not Created Unsuccessfully: " + line);
+                    }
 
+                } catch (Exception e) {
+                    System.out.println("Parsing error while creating review: " + line);
+                    System.out.println("Continuing to parse the file.");
+                }
+
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
     /**
      * method: Menu
      * params: None

@@ -104,7 +104,7 @@ public class Database {
      */
     public boolean UpdateReview(int reviewId, int rating, String reviewComment){
         try{
-            if (customerReviews.containsKey(reviewId)){
+            if (customerReviews.containsKey(reviewId) && rating <= 5 && rating >= 1){
                 customerReviews.get(reviewId).setRating(rating);
                 customerReviews.get(reviewId).setComment(reviewComment);
                 return this.restaurantUpdate();
