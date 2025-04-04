@@ -1,12 +1,13 @@
+import java.util.HashMap;
+
 /**
  * Tommy Chang
  * CEN 3024 Software Development 1
  * February 23, 2025
  * Database.java
  * This database class handles creating, reading, updating and deleting CustomerReview and Restaurant data.
+ * Use this class to facilitate storage of customer reviews.
  */
-import java.util.HashMap;
-
 public class Database {
     int ReviewId, RestaurantId;
     HashMap<Integer, CustomerReview> customerReviews;
@@ -14,9 +15,7 @@ public class Database {
 
     /**
      * method: Database()
-     * @param none
-     * @return Database
-     * purpose: initializes database with three restaurants for users to add reviews to
+     * purpose: initializes base database with three restaurants for users to add reviews to
      */
     public Database() {
         ReviewId = 0;
@@ -31,7 +30,11 @@ public class Database {
 
     /**
      * method: CreateReview
-     * @param String, String, float, String, int
+     * @param reviewTitle title of customer's review (string)
+     * @param reviewComment comment of customer's review (string)
+     * @param rating rating of customer's review (int)
+     * @param CustomerName customer name of the customer's review (string)
+     * @param RestaurantID restaurantID fk of the customer's review (int)
      * @return boolean
      * purpose: Inserts a validated restaurantID, autoincrement ID value to a review, then puts review into the database
      *
@@ -54,8 +57,13 @@ public class Database {
 
     /**
      * method: CreateRestaurant
-     * @param String, String, String, String, int, int
-     * @return boolean
+     * @param restaurantName - String representing the name of the Restaurant
+     * @param phone - String representing the phone of the Restaurant
+     * @param address - String representing the address of the Restaurant
+     * @param type - String representing the type of the Restaurant
+     * @param rating - float representing the rating of the Restaurant
+     * @param ratingCount - int representing the total count of ratings of the Restaurant
+     * @return true upon successful creation and addition of restaurant, false otherwise
      * purpose: Inserts an autoincrement ID value to a restaurant, then puts restaurant into the database
      *
      */
@@ -74,7 +82,7 @@ public class Database {
 
     /**
      * method: RemoveReview
-     * @param int
+     * @param ReviewId represents a valid existing id of a customer's review to remove
      * @return boolean
      * purpose: Removes review from database if the id for the review exists
      *
@@ -97,7 +105,9 @@ public class Database {
 
     /**
      * method: RemoveReview
-     * @param int, int, string
+     * @param reviewId valid existing id to be updated
+     * @param rating valid rating 1-5 to update original review
+     * @param reviewComment valid comment to update original review
      * @return boolean
      * purpose: Updates review from database if the id for the review exists
      *
@@ -120,7 +130,6 @@ public class Database {
 
     /**
      * method: restaurantUpdate
-     * @param int, int, string
      * @return boolean
      * purpose: Updates restaurants in database to reflect current review ratings
      * gets called after every CRUD operation to ensure restaurant data is up-to-date
@@ -149,28 +158,24 @@ public class Database {
         }
     }
 
+
+    /**
+     * method: getCustomerReviews()
+     * @return customerReview hashmap (k,v) = (id, customerReview)
+     * Get the current customerReviews of the database
+     */
     public HashMap<Integer, CustomerReview> getCustomerReviews() {
         return customerReviews;
     }
 
-    public void setCustomerReviews(HashMap<Integer, CustomerReview> customerReviews) {
-        this.customerReviews = customerReviews;
-    }
-
+    /**
+     * method: getRestaurants()
+     * @return customerReview hashmap (k,v) = (id, Restaurant)
+     * Get the current restaurants of the database
+     */
     public HashMap<Integer, Restaurant> getRestaurants() {
         return restaurants;
     }
 
-    public void setRestaurants(HashMap<Integer, Restaurant> restaurants) {
-        this.restaurants = restaurants;
-    }
-
-    public int getReviewId() {
-        return ReviewId;
-    }
-
-    public void setReviewId(int reviewId) {
-        ReviewId = reviewId;
-    }
 
 }

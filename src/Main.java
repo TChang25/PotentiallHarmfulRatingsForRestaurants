@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -12,6 +11,20 @@ import java.util.Scanner;
  */
 public class Main {
 
+    /**
+     * method: Main()
+     * default constructor
+     */
+    public Main() {
+
+    }
+
+    /**
+     * method: main()
+     * @param args
+     * handles the menu and functional logic of the application
+     * initializes database and scanner necessary for IO
+     */
     public static void main(String[] args) {
         Main main = new Main();
         Scanner sc = new Scanner(System.in);
@@ -109,7 +122,8 @@ public class Main {
 
     /**
      * method: calculateRestaurantGrade
-     * @param Database, int
+     * @param db the runtime object of the current database (Database)
+     * @param restaurantID a valid restaurant id to calculate upon (int)
      * @return String
      * purpose: To perform custom action of calculating the total rating of a restaurant then returning
      * as a letter associated with the rating average.
@@ -143,6 +157,13 @@ public class Main {
             return "";
         }
     }
+
+    /**
+     * method: processInputFile()
+     * @param fileName - String representing the filename to be processed
+     * @param db - Database object representing the storage for the file data to be stored
+     * @return true if file was found and processed, false otherwise
+     */
     public boolean processInputFile(String fileName, Database db){
         try {
             Scanner scFile = new Scanner(new File(fileName));
@@ -191,7 +212,7 @@ public class Main {
 
     /**
      * method: getIntValueFromInput
-     * @param String
+     * @param msg the string to be validated to int
      * @return int
      * purpose: Int scan helper function to prevent bad values from being entered
      */
@@ -213,7 +234,7 @@ public class Main {
 
     /**
      * method: getIntValueFromInput
-     * @param String
+     * @param msg the string to be validated to double
      * @return double
      * purpose: double scan helper function to prevent bad values from being entered
      */
@@ -235,7 +256,7 @@ public class Main {
 
     /**
      * method: getIntValueFromInput
-     * @param String
+     * @param msg the string to be validated to string
      * @return String
      * purpose: String scan helper function to prevent bad values from being entered
      */

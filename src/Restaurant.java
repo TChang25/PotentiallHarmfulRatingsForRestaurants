@@ -4,8 +4,8 @@
  * February 23, 2025
  * Restaurant.java
  * This class models how the Restaurant Object will behave in the database.
+ * Database Has Restaurants, Use the database to store Restaurants in persistent storage
  */
-
 public class Restaurant {
 
     private int ID;
@@ -16,6 +16,17 @@ public class Restaurant {
     private float rating;
     private int RatingCount;
 
+    /**
+     * method: Restaurant(int ID, String name, String phone, String address, String type, float rating, int ratingCount)
+     * @param ID - unique ID of the Restaurant
+     * @param name - name of the Restaurant
+     * @param phone - phone of the Restaurant
+     * @param address - address of the Restaurant
+     * @param type - type of the Restaurant
+     * @param rating rating of the Restaurant
+     * @param ratingCount count of ratings of the Restaurant
+     * Every restaurant created must have these parameters. Without these parameters the restaurant is invalid and cannot be used.
+     */
     public Restaurant(int ID, String name, String phone, String address, String type, float rating, int ratingCount) {
         this.ID = ID;
         this.name = name;
@@ -26,62 +37,57 @@ public class Restaurant {
         this.RatingCount = ratingCount;
     }
 
+    /**
+     * method: getID()
+     * @return int unique ID of the Restaurant
+     * getter
+     */
     public int getID() {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
+    /**
+     * method: getRating()
+     * @return float rating of the Restaurant
+     * getter
+     */
     public float getRating() {
         return rating;
     }
 
+    /**
+     * method: setRating()
+     * @param rating - float 1-5 to represent the rating of the restaurant
+     * setter
+     */
     public void setRating(float rating) {
         this.rating = rating;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
+    /**
+     * method: getRatingCount()
+     * @return int RatingCount the total count of ratings related to the restaurant
+     * getter
+     */
     public int getRatingCount() {
         return RatingCount;
     }
 
+    /**
+     * method: getRatingCount()
+     * @param ratingCount - int the total count of ratings related to the restaurant
+     * getter
+     */
     public void setRatingCount(int ratingCount) {
         RatingCount = ratingCount;
     }
 
+    /**
+     * method: toString()
+     * @return String(id + name + phone + address + type + rating + ratingCount)
+     * returns a string representation for the object Restaurant
+     */
     public String toString() {
         return this.ID + " " + this.name + " " + this.phone + " " + this.address + " " + this.type + " " + this.rating + " " + this.RatingCount;
     }
